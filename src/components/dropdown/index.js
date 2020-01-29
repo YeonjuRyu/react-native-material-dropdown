@@ -550,13 +550,17 @@ export default class Dropdown extends PureComponent {
   }
 
   renderAccessory() {
-    let { baseColor: backgroundColor } = this.props;
+    let { baseColor: backgroundColor, accessoryImage } = this.props;
     let triangleStyle = { backgroundColor };
 
     return (
       <View style={styles.accessory}>
         <View style={styles.triangleContainer}>
-          <View style={[styles.triangle, triangleStyle]} />
+          {
+            accessoryImage !== undefined
+            ? accessoryImage
+            : <View style={[styles.triangle, triangleStyle]} />
+          }
         </View>
       </View>
     );
@@ -579,6 +583,7 @@ export default class Dropdown extends PureComponent {
       selectedItemColor = textColor,
       disabledItemColor = baseColor,
       fontSize,
+      fontWeight,
       itemTextStyle,
       rippleOpacity,
       rippleDuration,
@@ -617,7 +622,7 @@ export default class Dropdown extends PureComponent {
           itemColor:
         selectedItemColor;
 
-    let textStyle = { color, fontSize };
+    let textStyle = { color, fontSize, fontWeight };
 
     props.style = [
       style,

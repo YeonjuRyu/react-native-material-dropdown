@@ -19,11 +19,8 @@ export default StyleSheet.create({
   },
 
   triangleContainer: {
-    width: 12,
-    height: 6,
     overflow: 'hidden',
     alignItems: 'center',
-
     backgroundColor: 'transparent', /* XXX: Required */
   },
 
