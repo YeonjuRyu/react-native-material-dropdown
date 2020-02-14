@@ -1,22 +1,11 @@
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
-import {
-  Text,
-  View,
-  FlatList,
-  Animated,
-  Modal,
-  TouchableWithoutFeedback,
-  Dimensions,
-  Platform,
-  ViewPropTypes,
-  I18nManager,
-} from 'react-native';
+import { Animated, Dimensions, FlatList, I18nManager, Modal, Platform, Text, TouchableWithoutFeedback, View, ViewPropTypes } from 'react-native';
 import Ripple from 'react-native-material-ripple';
 import { TextField } from 'react-native-material-textfield';
-
 import DropdownItem from '../item';
 import styles from './styles';
+
 
 export default class Dropdown extends PureComponent {
   static defaultProps = {
@@ -507,9 +496,8 @@ export default class Dropdown extends PureComponent {
       <TextField
         label=''
         labelHeight={dropdownOffset.top - Platform.select({ ios: 1, android: 2 })}
-
         {...props}
-
+        style={{color:this.props.textColor}}
         value={title}
         editable={false}
         onChangeText={undefined}
@@ -581,7 +569,7 @@ export default class Dropdown extends PureComponent {
       itemColor,
       baseColor,
       selectedItemColor = textColor,
-      disabledItemColor = baseColor,
+      disabledItemColor,
       fontSize,
       fontWeight,
       itemTextStyle,
@@ -614,9 +602,9 @@ export default class Dropdown extends PureComponent {
       value:
       label;
 
-    let color = disabled?
-      disabledItemColor:
-      ~selected?
+    let color = disabled ?
+        disabledItemColor :
+        ~selected?
         index === selected?
           selectedItemColor:
           itemColor:
@@ -722,7 +710,7 @@ export default class Dropdown extends PureComponent {
       disabled,
       hitSlop,
       pressRetentionOffset,
-      onPress: this.onPress,
+      onPress: disabled ? ()=>{} : this.onPress,
       testID,
       nativeID,
       accessible,
