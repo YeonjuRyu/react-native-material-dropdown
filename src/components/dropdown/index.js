@@ -6,7 +6,6 @@ import { TextField } from 'react-native-material-textfield';
 import DropdownItem from '../item';
 import styles from './styles';
 
-
 export default class Dropdown extends PureComponent {
   static defaultProps = {
     hitSlop: { top: 6, right: 4, bottom: 6, left: 4 },
@@ -206,6 +205,7 @@ export default class Dropdown extends PureComponent {
     } = this.props;
 
     if (disabled) {
+      this.props.onDisabledPress();
       return;
     }
 
@@ -707,10 +707,9 @@ export default class Dropdown extends PureComponent {
     };
 
     let touchableProps = {
-      disabled,
       hitSlop,
       pressRetentionOffset,
-      onPress: disabled ? ()=>{} : this.onPress,
+      onPress: this.onPress,
       testID,
       nativeID,
       accessible,
